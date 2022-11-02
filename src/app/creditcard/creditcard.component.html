@@ -1,0 +1,102 @@
+<app-navbar></app-navbar>
+
+<div class="container col-md-12 mt-0">
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-center">
+                    <ul> Credit card </ul>
+                </h3>
+            </div>
+            <div class="card-body">
+                <form (ngSumbit)="apply()">
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" [(ngModel)]="firstname" name="name"
+                            placeholder=" First Name" id="reg_name" required>
+
+                    </div>
+
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" [(ngModel)]="secondname" name="name"
+                            placeholder=" Second Name" id="reg_name" required>
+
+                    </div>
+
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" [(ngModel)]="accno" name="accno"
+                            placeholder="account number" id="reg_accnum" required> <br>
+                    </div>
+
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" [(ngModel)]="age" name="age" placeholder="Age"
+                            id="reg_accnum" required> <br>
+                    </div>
+
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" [(ngModel)]="adhaar" name="aadhar" placeholder="Adhaar"
+                            id="reg_accnum" required> <br>
+                    </div>
+
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" [(ngModel)]="mobno" name="mobno" placeholder="Mob No."
+                            id="reg_accnum" required> <br>
+                    </div>
+                    <div>
+                        <input type="submit" value="Apply" class="btn float-right login_btn  text-center"
+                            style="width:50%">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <table class="table table-dark" style="margin-top: 180px";>
+        <thead>
+            <tr>
+                <th scope=" col"> firstname</th>
+                <th scope=" col">Second Name</th>
+                <th scope=" col">Age</th>
+                <th scope=" col">Mob number</th>
+                <th scope=" col">Adhaar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of dummyDatabase">
+
+                <td>{{data.fname}}</td>
+                <td>{{data.sname}}</td>
+                <td>{{data.age}}</td>
+                <td>{{data.mobno}}</td>
+                <td>{{data.adhaar}}</td>
+
+
+
+            </tr>
+
+
+
+        </tbody>
+
+
+
+
+    </table>
