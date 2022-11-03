@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: "", component: LoginComponent },
   { path: "forgot", component: ForgotComponent },
   { path: 'register', component: RegisterComponent },
-  { path: "creditcard", component: CreditcardComponent }
+  { path: 'creditcard', component: CreditcardComponent }
 ];
 
 @NgModule({

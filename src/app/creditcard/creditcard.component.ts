@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-creditcard',
   templateUrl: './creditcard.component.html',
@@ -39,6 +40,11 @@ export class CreditcardComponent implements OnInit {
       "adhaar": this.adhaar
 
     })
+    console.log(this.creditDatabase)
+    
+    console.log(this.dummyDatabase)
+
+    console.log(this.dummyDatabase)
   }
 }
 
