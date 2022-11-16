@@ -8,6 +8,8 @@ export class AuthserviceService {
     1000: { acno: 1000, uname: "vigensh", password: 1000, Balance: 10000 }
   }
 
+  username:any
+
   constructor() { }
   register(acno:any,pswd:any,uname:any){
     var database:any = this.database
@@ -31,6 +33,8 @@ export class AuthserviceService {
     let db = this.database
     if (acno in db) {
       if (password == db[acno]['password']) {
+        this.username=db[acno]['uname']
+        localStorage.setItem("usrname",JSON.stringify(this.username))
         return true
       } else {
         alert('Incorrect password')
