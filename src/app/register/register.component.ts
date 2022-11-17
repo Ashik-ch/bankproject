@@ -9,13 +9,11 @@ import { AuthserviceService } from '../service/authservice.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  // accno:any
-  // name:any
-  // pswd:any
+ 
   registerForm = this.fb.group({
-    accno: ['',[Validators.required,Validators.pattern('[0-9]*')]],
-    name: ['',[Validators.required,Validators.pattern('[a-zA-Z]*')]],
-    pswd: ['',[Validators.required,Validators.pattern('[0-9]*')]]
+    accno: ['', [Validators.required, Validators.pattern('[0-9]*')]],
+    name: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
+    pswd: ['', [Validators.required, Validators.pattern('[0-9]*')]]
   })
 
   constructor(private ds: AuthserviceService,
@@ -30,20 +28,21 @@ export class RegisterComponent implements OnInit {
     var password = this.registerForm.value.pswd
 
     if (this.registerForm.valid) {
-      const result = this.ds.register(acno, password, uname)
-
-      if (result) {
-        alert("Register successfull")
-        this.router.navigateByUrl('')
-      } else {
-        alert("Register failed")
-      }
-
-
-    }
-    else {
-      alert("Not a valid form")
+      this.ds.register(acno, password, uname)
+        .subscribe((result) => {
+          console.log("user-",acno,password,uname);
+          
+          console.log("result:", result);
+          if (result) {
+            alert("Register successfull")
+            this.router.navigateByUrl('')
+          } else {
+            alert("Register failed")
+          }
+        }, (result) => {
+          console.log("test:", result.error.msg)
+          alert(result.error.msg)
+        })
     }
   }
-
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthserviceService } from '../service/authservice.service';
+
 //////////authservice
 
 @Component({
@@ -10,9 +11,8 @@ import { AuthserviceService } from '../service/authservice.service';
 })
 
 export class LoginComponent implements OnInit {
-  // database: any = {
-  //   1000: { acno: 1001, uname: "Vignesh", password: 2000, Balance: 10000 }
-  //    // setting predifined Database
+
+  // setting predifined Database
 
   abc: any = "Welcome to Bank"     //Called in html page  L-7
   acn: any = "Enter Your Acc.No"
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
 
     // if (acno in this.db) {
     //   if (pswd == this.db[acno]["password"]) {  ///redult <->
-    
+
     if (result) {
       alert("Login Successfully")
       this.route.navigateByUrl("dashboard")
@@ -60,6 +60,4 @@ export class LoginComponent implements OnInit {
   //   this.pswd1 = event.target.value
   //   console.log("Password:", this.pswd1)
   // }
-
-
 }
