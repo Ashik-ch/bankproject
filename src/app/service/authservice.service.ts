@@ -14,12 +14,11 @@ export class AuthserviceService {
 
   constructor(private http: HttpClient) { }
 
-  register(acno: any, pswd: any, uname: any) {
+  register(acno: any, password: any, uname: any) {
     const data = {
       acno,
-      pswd,
+      password,
       uname
-
     }
 
     return this.http.post("http://localhost:3004/register", data)
@@ -41,22 +40,29 @@ export class AuthserviceService {
   // }
 
 
-  login(acno: any, pass: any) {
-    var database: any = this.database
-    if (acno in database) {
-      if (pass == database[acno]['password']) {
+  login(acno: any, password: any) {
+    //     var database: any = this.database
+    //     if (acno in database) {
+    //       if (pass == database[acno]['password']) {
 
-        this.username = database[acno]['uname']
-        localStorage.setItem('user', JSON.stringify(this.username))
-        return true
-      } else {
-        alert("password incurrect")
-        return false
-      }
+    //         this.username = database[acno]['uname']
+    //         localStorage.setItem('user', JSON.stringify(this.username))
+    //         return true
+    //       } else {
+    //         alert("password incurrect")
+    //         return false
+    //       }
 
-    } else {
-      alert("incorrect user")
-      return false
+    //     } else {
+    //       alert("incorrect user")
+    //       return false
+    //     }
+
+    const data = {
+      acno,
+      password
     }
+    return this.http.post("http://localhost:3004/login", data)
+
   }
 }

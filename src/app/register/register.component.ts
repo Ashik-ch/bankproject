@@ -30,9 +30,10 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       this.ds.register(acno, password, uname)
         .subscribe((result) => {
-          console.log("user-",acno,password,uname);
           
+          console.log("user-",acno,password,uname);
           console.log("result:", result);
+
           if (result) {
             alert("Register successfull")
             this.router.navigateByUrl('')
@@ -40,8 +41,8 @@ export class RegisterComponent implements OnInit {
             alert("Register failed")
           }
         }, (result) => {
-          console.log("test:", result.error.msg)
-          alert(result.error.msg)
+          console.log("test:", result.error.message)
+          alert(result.error.message)
         })
     }
   }

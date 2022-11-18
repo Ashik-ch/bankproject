@@ -21,10 +21,8 @@ export class LoginComponent implements OnInit {
   accountnumber1: any = ""        //ngModal declaring
   pswd1: any = ""
 
-  constructor(private route: Router, private forgoten: Router, private db: AuthserviceService)       ///dependency unjection
-  {
-
-  }
+  constructor(private route: Router, private forgoten: Router, private ds: AuthserviceService)       ///dependency unjection
+  { }
 
   ngOnInit(): void {
   }
@@ -32,32 +30,32 @@ export class LoginComponent implements OnInit {
   login() {
     var acno: any = this.accountnumber1
     var pswd: any = this.pswd1
-    var result: any = this.db.login(acno, pswd)
 
+    this.ds.login(acno, pswd)
+      .subscribe((result:any) => {
+        alert(result.message)
+        localStorage.setItem("CurrentAccountNumber", JSON.stringify(result.currentaccountnum))
+        localStorage.setItem("CurrentName", JSON.stringify(result.currentname))
+        localStorage.setItem("Token", JSON.stringify(result.token))
+        this.route.navigateByUrl("dashboard")
+      }, (result) => {
+        alert(result.error.message)
+        // this.forgoten.navigateByUrl("forgot")
+      })
 
-    // if (acno in this.db) {
-    //   if (pswd == this.db[acno]["password"]) {  ///redult <->
+    // acnochange(event: any) {
+    //   console.log(event)
 
-    if (result) {
-      alert("Login Successfully")
-      this.route.navigateByUrl("dashboard")
-    } else {
-      alert("Login Failed")
-      this.forgoten.navigateByUrl("forgot")
-    }
+    //   this.accountnumber = event.target.value
+    //   console.log("INPUT:", this.accountnumber)
+    // }
+
+    // pswrdchange(event: any) {
+    //   console.log(event)
+
+    //   this.pswd1 = event.target.value
+    //   console.log("Password:", this.pswd1)
+    // }
+
   }
-
-  // acnochange(event: any) {
-  //   console.log(event)
-
-  //   this.accountnumber = event.target.value
-  //   console.log("INPUT:", this.accountnumber)
-  // }
-
-  // pswrdchange(event: any) {
-  //   console.log(event)
-
-  //   this.pswd1 = event.target.value
-  //   console.log("Password:", this.pswd1)
-  // }
 }
