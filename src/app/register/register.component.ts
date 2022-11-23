@@ -30,6 +30,7 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       this.ds.register(acno, password, uname)
         .subscribe((result) => {
+          alert("Register successfull")
           
           console.log("user-",acno,password,uname);
           console.log("result:", result);

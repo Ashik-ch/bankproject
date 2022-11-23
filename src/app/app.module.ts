@@ -11,6 +11,8 @@ import { ForgotComponent } from './forgot/forgot.component';
 import { RegisterComponent } from './register/register.component';
 import { CreditcardComponent } from './creditcard/creditcard.component';
 import {  HttpClientModule } from '@angular/common/http';
+import { TransactionComponent } from './transaction/transaction.component';
+import { DeleteComponent } from './delete/delete.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import {  HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     ForgotComponent,
     RegisterComponent,
-    CreditcardComponent
+    CreditcardComponent,
+    TransactionComponent,
+    DeleteComponent
   ],
   imports: [
     BrowserModule,

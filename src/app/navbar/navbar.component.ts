@@ -8,14 +8,14 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  usname:any
+  usname=JSON.parse(localStorage.getItem("CurrentName")||'')
 
   constructor(private route: Router) {
-    this.usname=JSON.parse(localStorage.getItem("CurrentName")||'')
    }
 
   ngOnInit(): void {
   }
+  
 
 
   logout() {

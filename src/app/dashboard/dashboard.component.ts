@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 const Options = {
   headers: new HttpHeaders
 }
@@ -17,14 +18,19 @@ export class DashboardComponent implements OnInit {
   accnow: any
   pswdw: any
   amountw: any
-  constructor(private http: HttpClient) { }
 
+  delacc: any
+
+  constructor(private http: HttpClient,private root:Router) { }
+
+  usname = JSON.parse(localStorage.getItem("CurrentName") || '')
   ngOnInit(): void {
     // document.body.className = "dashboard"
   }
   getOptions() {
-    var token=JSON.parse(localStorage.getItem(token)||'')
+    var token = JSON.parse(localStorage.getItem('Token') || '')
     let headers = new HttpHeaders()
+    console.log('token', token, headers)
     if (token) {
       headers = headers.append("x-access-token", token)
       Options.headers = headers
@@ -39,36 +45,21 @@ export class DashboardComponent implements OnInit {
     var amount = this.amountd
 
     const data = {
-      acno,
-      password,
-      amount
+      "acno": acno,
+      "password": password,
+      "amount": amount
     }
-    this.http.post("http://localhost:3004/deposit",data,this.getOptions())
+    console.log("DATA:", data)
+    this.http.post("http://localhost:3004/deposit", data, this.getOptions())
       .subscribe((result: any) => {
         console.log("resss", result);
-        
-        
+
+
         alert(result.message)
       }, (result: any) => {
         alert(result.error.message)
       }
       )
-
-    // if(acc in db){
-    //   if(psw == db[acc]["password"]){
-    //     db[acc]["Balance"] = Number(db[acc]["Balance"])+Number(amt)
-    //     db[acc]['Transaction']={
-    //       "Mode":"Online",
-    //       "Type":"Deposit",
-    //       "Amount":amt
-    //     }
-    //     console.log("DATABASE:",db)
-    //     alert(`Amount ${amt} added successfully,Current account balance is ${db[acc]["Balance"]}`)
-    //   }else{
-    //     alert("check password")
-    //   }
-    // }else{
-    //   alert("No such accounts")
   }
 
 
@@ -83,37 +74,30 @@ export class DashboardComponent implements OnInit {
       password,
       amount
     }
-    this.http.post("http://localhost:3004/withdraw",data,this.getOptions())
+    this.http.post("http://localhost:3004/withdraw", data, this.getOptions())
       .subscribe((result: any) => {
         alert(result.message)
       }, (result: any) => {
         alert(result.error.message)
       }
       )
+  }
 
 
-    // if (acc in db) {
-    //   if (psw == db[acc]["password"]) {
-    //     if (Number(amt) < Number(db[acc]["Balance"])) {
-    //       db[acc]["Balance"] = Number(db[acc]["Balance"]) - Number(amt)
-    //       db[acc]['Transaction'] = {
-    //         "Mode": "Online",
-    //         "Type": "Withdraw",
-    //         "Amount": amt
-    //       }
-    //       console.log("DATABASE:", db)
-    //       alert(`Amount ${amt} withdrawed successfully,Current account balance is ${db[acc]["Balance"]}`)
-    //     } else {
-    //       alert("Insufficient balance")
-    //     }
-
-    //   } else {
-    //     alert("check password")
-    //   }
-    // } else {
-    //   alert("No such accounts")
-
-
-
+  //parent -Child communitction  - Deleting Account
+  Deleteaccount() {
+    this.delacc = JSON.parse(localStorage.getItem('CurrentAccountNumber') || '')
+  }
+  deleted(acno:any) {
+    console.log("DELETE:", acno);
+    
+    this.http.delete(`http://localhost:3004/delete/${acno}`)
+    .subscribe((result:any)=>{
+      console.log("result:", result)
+      this.root.navigateByUrl('')
+  })
+}
+  cancel() {
+    this.delacc = ''
   }
 }

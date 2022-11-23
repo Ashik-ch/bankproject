@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+<p  class="text-light ms-4 mt-4">Time : {{datenew|date:"short"}}</p>
+<table class="table table-success">
+    <thead>
+        <tr>
+            <th scope=" col"> Amount</th>
+             <th scope=" col"> Mode</th>
+            <th scope=" col">Type</th>
+            <th scope=" col">Time</th>
+            <th scope=" col">Balance</th>
+        
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let data of transaction">
+            <td>{{data.amount}}</td>
+            <td>{{data.mode}}</td>
+            <td>{{data.type}}</td>
+            <td>{{data.time | date:'short'}}</td>     //pipe method
+            <td>{{data.balance}}</td>
+            
+        </tr>
+    </tbody>
+</table>
